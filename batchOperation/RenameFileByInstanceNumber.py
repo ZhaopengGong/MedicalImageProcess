@@ -7,9 +7,9 @@ import pydicom
 # 是否是标记的dicom文件
 isLabelDicom  = 1
 # 文件夹层级
-folder_degree = 0
+folder_degree = 1
 # dicom 文件夹路径
-dicom_root_folder_path = "F:\\DeepLearing\\data\\鼓室标注区域测试"
+dicom_root_folder_path = "H:\\耳部CT数据集\\WED74例标注数据导出后"
 
 
 def renameDicom(parentFolderPath):
@@ -34,7 +34,7 @@ for patient_folder in os.listdir(dicom_root_folder_path):
         renameDicom(os.path.join(dicom_root_folder_path, patient_folder))
     elif(folder_degree == 0):
         renameDicom(dicom_root_folder_path)
-        break;
+        break
     else:
         subFolderPath = os.path.join(dicom_root_folder_path, patient_folder)
         for organName in os.listdir(subFolderPath):

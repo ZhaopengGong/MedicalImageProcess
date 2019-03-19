@@ -3,9 +3,9 @@
 import os
 import glob
 
-original_folder_path = "F:\\DeepLearing\\data\\友谊64例标注数据MIMIC"
-target_folder_path = "F:\\DeepLearing\\data\\64例裁剪后标注数据QT-nii"
+original_folder_path = "H:\\耳部CT数据集\\WED81例标注数据MIMIC"
+target_folder_path = "H:\\耳部CT数据集\\WED81例标注数据导出后"
 
 for patient_folder in os.listdir(original_folder_path):
-    created_folder_path = os.path.join(target_folder_path, patient_folder)
+    created_folder_path = os.path.join(target_folder_path, patient_folder.split('.')[0])
     os.makedirs(created_folder_path)

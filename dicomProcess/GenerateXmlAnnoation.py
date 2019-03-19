@@ -2,7 +2,7 @@
 @Author: 弓照鹏
 @LastEditors: 弓照鹏
 @Date: 2019-01-18 18:33:45
-@LastEditTime: 2019-01-19 17:03:34
+@LastEditTime: 2019-01-21 16:47:34
 @organization: BJUT
 生成标注数据的xml文件，将boundingbox的坐标写入到xml文件中
 '''
@@ -23,6 +23,7 @@ def writeXmlObjectNode(matrix, organName):
         node_difficult = SubElement(node_object, 'difficult')
         node_difficult.text = '0'
         node_bndbox = SubElement(node_object, 'bndbox')
+        # 写入xml文件需要将数字转换为字符串
         node_xmin = SubElement(node_bndbox, 'xmin')
         node_xmin.text = str(matrix[0])
         node_ymin = SubElement(node_bndbox, 'ymin')
@@ -31,8 +32,10 @@ def writeXmlObjectNode(matrix, organName):
         node_xmax.text = str(matrix[2])
         node_ymax = SubElement(node_bndbox, 'ymax')
         node_ymax.text = str(matrix[3])
+        
 # 该目录下面的每一个文件夹
 for folderName in os.listdir(folder_path):
+        print(folderName)
         single_folder_path = os.path.join(folder_path, folderName)
         # 遍历每一张dicom图像
         for filename in os.listdir(single_folder_path):
@@ -126,7 +129,6 @@ for folderName in os.listdir(folder_path):
                                                                 (label_matrix_right_NTD[1])[np.argmax(label_matrix_right_NTD[1])], (label_matrix_right_NTD[0])[np.argmax(label_matrix_right_NTD[0])]]
                                         writeXmlObjectNode(result_matrix_right_NTD, 'NTD')
                         xml = tostring(node_root, pretty_print=True)  #格式化显示，该换行的换行
-                        dom = parseString(xml)
                         output_file_path = os.path.join(output_folder_path, folderName+"_"+filename.split(".")[0]+".xml")
                         output_file =  open(output_file_path, 'w')
                         output_file.write(str(xml, encoding = "utf-8"))
