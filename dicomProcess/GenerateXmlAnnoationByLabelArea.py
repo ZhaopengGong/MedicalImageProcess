@@ -5,7 +5,7 @@
 @LastEditors: 弓照鹏
 @organization: BJUT
 @Date: 2019-03-12 15:21:31
-@LastEditTime: 2019-03-19 09:54:17
+@LastEditTime: 2019-03-19 15:53:33
 通过连通域来生成对应的标注xml文件
 '''
 
